@@ -1,0 +1,50 @@
+// C++ code
+//
+#define green 8
+#define yellow 9
+#define red 10
+
+#define echo 3
+#define trig 2
+void setup(){//works one time when start...
+	pinMode(green,OUTPUT);
+  	pinMode(yellow,OUTPUT);
+ 	pinMode(red,OUTPUT);
+  	pinMode(echo,INPUT);
+  	pinMode(trig,OUTPUT);
+}
+
+void loop(){// works for ever...
+  long duration, cm;
+  //sends pulses....
+  digitalWrite(trig,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig,LOW);
+
+  //now we need to accept this pulse....
+  
+  duration = pulseIn(echo,HIGH); // to measure the time taken to accept it.
+  cm = duration / 29 / 2;
+  
+  long distance = map(analogRead(A5),0,1023,1,12); // change the range of the input.
+  
+    if(cm>20*distance){
+    digitalWrite(green,HIGH);
+  	digitalWrite(yellow,LOW);
+    digitalWrite(red,LOW);
+  }
+  else if(cm<= 20*distance && cm>=10*distance){
+    digitalWrite(green,LOW);
+  	digitalWrite(yellow,HIGH);
+    digitalWrite(red,LOW);
+  }
+  else {
+   digitalWrite(green,LOW);
+  	digitalWrite(yellow,LOW);
+    digitalWrite(red,HIGH);
+  }
+
+  
+}
