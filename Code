@@ -25,7 +25,7 @@ void loop(){// works for ever...
 
   //now we need to accept this pulse....
   
-  duration = pulseIn(echo,HIGH); // to measure the time taken to accept it.
+  duration = pulseIn(echo,HIGH); // to measure the time taken to accept it. (by measuring the time that this pin has been high)
   cm = duration / 29 / 2;
   
   long distance = map(analogRead(A5),0,1023,1,12); // change the range of the input.
